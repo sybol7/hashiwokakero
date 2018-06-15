@@ -66,12 +66,13 @@ class Graph:
 
 
 a = Graph()
-width = int(input())  # the number of cells on the X axis
-height = int(input())  # the number of cells on the Y axis
-lines = [input() for i in range(height)]
+#width = int(input())  # the number of cells on the X axis
+#height = int(input())  # the number of cells on the Y axis
+lines = ['2.', '42']  # [input() for i in range(height)]
+# transposition des colonnes en lignes
 tr_lines = [''.join(x) for x in zip(*lines)]
 
-# Construction du graph avec sommets et voisins
+# Construction du graph des coodonnées des sommets
 for y, line in enumerate(lines):
     for x, ch in enumerate(line):
         if ch == '.':
@@ -79,6 +80,7 @@ for y, line in enumerate(lines):
         else:
             a.add_vertex((x, y), int(ch))
 
+# ajout des voisins
 x1 = y1 = x2 = y2 = -1
 for y, line in enumerate(lines):
     for x, ch in enumerate(line):
@@ -91,7 +93,6 @@ for y, line in enumerate(lines):
                 x2, y2 = x, y
                 a.add_edge((x1, y1), (x2, y2))
                 x1, y1 = x2, y2
-                x2, y2 = -1, -1
     x1 = y1 = x2 = y2 = -1
 
 x1 = y1 = x2 = y2 = -1
@@ -106,11 +107,11 @@ for y, line in enumerate(tr_lines):
                 x2, y2 = y, x
                 a.add_edge((x1, y1), (x2, y2))
                 x1, y1 = x2, y2
-                x2, y2 = -1, -1
     x1 = y1 = x2 = y2 = -1
 
-for connection in a.connections:
-    print(connection)
+# afichagecdu graph
+for node in a:
+    print(node)
 
 
 
